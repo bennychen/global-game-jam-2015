@@ -22,6 +22,7 @@ public class Ghost : MonoBehaviour
 //		Debug.Log("collide stay !"+collider.gameObject.name);
 		if(collider.gameObject.Equals(_player)){
 			updateListnerDistance(collider);
+
 		}
 	}
 	void updateListnerDistance(Collider collider){
@@ -34,6 +35,7 @@ public class Ghost : MonoBehaviour
 
 		updateListnerDistance(collider);
 		_shouting = true;
+
 	}
 
 	void stopShouting(Collider collider){
@@ -45,6 +47,7 @@ public class Ghost : MonoBehaviour
 		_player = GameObject.Find("Player");
 	}
 	void randomMove (float deltaTime){
+		if(!randomMoveEnbaled)return;
 		if (randomMoveTimeCounter <= 0) {
 			randomMoveTimeCounter = randomMovePeriod;
 			//randomMove aciton
@@ -91,8 +94,13 @@ public class Ghost : MonoBehaviour
 	public float randomMoveMax { get{return randomMoveSize.y;}}
 	[SerializeField]
 	private float randomMoveTimeCounter = 0;
+
+	[SerializeField]
+	private bool randomMoveEnbaled = true;
+
 	private bool _shouting = false;
 	private float distanceFromLisnter = 0;
 	private GameObject _player ;
+
 	public bool isShouting {get{return _shouting;}}
 }
