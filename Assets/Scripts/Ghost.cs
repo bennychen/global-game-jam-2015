@@ -3,32 +3,33 @@ using System.Collections;
 
 public class Ghost : MonoBehaviour
 {
-
 	// Use this for initialization
 	void OnTriggerEnter(Collider collider){
 		//进入触发器执行的代码
 //		Debug.Log("collide enter !"+collider.gameObject.name);
 		if(collider.gameObject.Equals(_player)){
 			startShouting(collider);
+			audio.Play();
 		}
 	}
 	void OnTriggerExit(Collider collider){
 //		Debug.Log("collide exit !"+collider.gameObject.name);
 		if(collider.gameObject.Equals(_player)){
 			stopShouting(collider);
+			audio.Stop();
 		}
 	}
 	void OnTriggerStay(Collider collider){
 //		Debug.Log("collide stay !"+collider.gameObject.name);
 		if(collider.gameObject.Equals(_player)){
 			updateListnerDistance(collider);
-
 		}
 	}
 	void updateListnerDistance(Collider collider){
 		if(_shouting){
 			distanceFromLisnter = Vector3.Distance(transform.position,collider.gameObject.transform.position);
 			Debug.Log("distance :"+distanceFromLisnter);
+			audio.volume = 1-distanceFromLisnter*0.1f;
 		}
 	}
 	void startShouting(Collider collider){
