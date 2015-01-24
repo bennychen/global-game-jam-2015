@@ -10,6 +10,9 @@ public class Player : MonoBehaviour {
 
 	public float countTime = 0.0f;
 
+	[SerializeField]
+	public float speed = 10;
+
 	bool isMoving = false;
 	// Use this for initialization
 	void Start () {
@@ -25,6 +28,11 @@ public class Player : MonoBehaviour {
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
 
+		//rigidbody.MovePosition(rigidbody.position + moveHorizontal * Vector3.right * Time.fixedDeltaTime * 10 + 
+		                       //moveVertical * Vector3.forward * Time.fixedDeltaTime * 10);
+		rigidbody.velocity = moveHorizontal * Vector3.right * speed + moveVertical * Vector3.forward * speed;
+
+		/*
 		float moveHorizontalNum = moveHorizontal;
 		float moveVerticalNum = moveVertical;
 
@@ -54,5 +62,6 @@ public class Player : MonoBehaviour {
 		{
 			countTime=0.0f;
 		}
+		*/
 	}
 }

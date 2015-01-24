@@ -36,7 +36,7 @@ public class ContactSoundPlayer : MonoBehaviour {
 				if(-room>1000*(distanceThreshold-reverbThreshold)){room = -10000;}
 				_reverbFilter.room = room;
 				currentRoom = room;
-				Debug.Log("reverbFilter.room:"+_reverbFilter.room);
+				//Debug.Log("reverbFilter.room:"+_reverbFilter.room);
 			}
 
 		}
