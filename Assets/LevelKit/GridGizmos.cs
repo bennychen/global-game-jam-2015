@@ -23,9 +23,9 @@ public class GridGizmos : MonoBehaviour
     public void SnapTransformToGridNode(Transform transform)
     {
         float closestGridX = GetClosestGridX(transform.position.x);
-        float closestGridY = GetClosetGridY(transform.position.y);
+        float closestGridZ = GetClosetGridZ(transform.position.z);
         transform.position = new Vector3(closestGridX,
-            closestGridY, transform.position.z);
+            closestGridZ, transform.position.z);
     }
 
     public void SnapTransformToHorizontalGrid(Transform transform)
@@ -37,7 +37,7 @@ public class GridGizmos : MonoBehaviour
 
     public void SnapTransformToVerticalGrid(Transform transform)
     {
-        float closestGridY = GetClosetGridY(transform.position.y);
+        float closestGridY = GetClosetGridZ(transform.position.y);
         transform.position = new Vector3(transform.position.x,
             closestGridY, transform.position.z);
     }
@@ -47,9 +47,9 @@ public class GridGizmos : MonoBehaviour
         return ClampToBoundsX(Mathf.Floor(x / GridWidth + 0.5f) * GridWidth);
     }
 
-    public float GetClosetGridY(float y)
+    public float GetClosetGridZ(float z)
     {
-        return ClampToBoundsY(Mathf.Floor(y / GridHeight + 0.5f) * GridHeight);
+        return ClampToBoundsZ(Mathf.Floor(z / GridHeight + 0.5f) * GridHeight);
     }
 
     public float GetLeftGridX(float x)
@@ -57,9 +57,9 @@ public class GridGizmos : MonoBehaviour
         return ClampToBoundsX(Mathf.Floor(x / GridWidth) * GridWidth);
     }
 
-    public float GetLowerGridY(float y)
+    public float GetLowerGridZ(float z)
     {
-        return ClampToBoundsY(Mathf.Floor(y / GridHeight) * GridHeight);
+        return ClampToBoundsZ(Mathf.Floor(z / GridHeight) * GridHeight);
     }
 
     public float GetRightGridX(float x)
@@ -67,9 +67,9 @@ public class GridGizmos : MonoBehaviour
         return ClampToBoundsX(Mathf.Ceil(x / GridWidth) * GridWidth);
     }
 
-    public float GetUpperGridY(float y)
+    public float GetUpperGridZ(float z)
     {
-        return ClampToBoundsY(Mathf.Ceil(y / GridHeight) * GridHeight);
+        return ClampToBoundsZ(Mathf.Ceil(z / GridHeight) * GridHeight);
     }
 
     private float ClampToBoundsX(float x)
@@ -77,9 +77,9 @@ public class GridGizmos : MonoBehaviour
         return Mathf.Clamp(x, _leftBottom.x, _leftBottom.x + _bounds.x);
     }
 
-    private float ClampToBoundsY(float y)
+    private float ClampToBoundsZ(float z)
     {
-        return Mathf.Clamp(y, _leftBottom.y, _leftBottom.y + _bounds.y);
+        return Mathf.Clamp(z, _leftBottom.y, _leftBottom.y + _bounds.y);
     }
 
     public Color color = Color.white;
@@ -88,16 +88,16 @@ public class GridGizmos : MonoBehaviour
     {
         Gizmos.color = color;
 
-        for (float y = _leftBottom.y; y < _leftBottom.y + _bounds.y; y += GridHeight)
+        for (float z = _leftBottom.y; z < _leftBottom.y + _bounds.y; z += GridHeight)
         {
-            Gizmos.DrawLine(new Vector3(_leftBottom.x, GetLowerGridY(y), 0.0f),
-                            new Vector3(_leftBottom.x + _bounds.x, GetLowerGridY(y), 0.0f));
+            Gizmos.DrawLine(new Vector3(_leftBottom.x, 0.0f, GetLowerGridZ(z)),
+                            new Vector3(_leftBottom.x + _bounds.x, 0.0f, GetLowerGridZ(z)));
         }
 
         for (float x = _leftBottom.x; x < _leftBottom.x + _bounds.x; x += GridWidth)
         {
-            Gizmos.DrawLine(new Vector3(GetLeftGridX(x), _leftBottom.y, 0.0f),
-                            new Vector3(GetLeftGridX(x), _leftBottom.y + _bounds.y, 0.0f));
+            Gizmos.DrawLine(new Vector3(GetLeftGridX(x), 0.0f, _leftBottom.y),
+                            new Vector3(GetLeftGridX(x), 0.0f, _leftBottom.y + _bounds.y));
         }
     }
 
