@@ -3,8 +3,14 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 	[SerializeField]
-	public  float stepSize = 10;
-	Vector3 lasttime;
+	public  float stepSize = 100.0f;
+
+	[SerializeField]
+	public float stepDuration = 0.5f;
+
+	public float countTime = 0.0f;
+
+	bool isMoving = false;
 	// Use this for initialization
 	void Start () {
 
@@ -18,32 +24,35 @@ public class Player : MonoBehaviour {
 	{
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
-		//Debug.Log (moveHorizontal);
 
-		float Horizontal = 0.0f;
-		float Vertical = 0.0f;
-		if(moveHorizontal>0)
+		float moveHorizontalNum = moveHorizontal;
+		float moveVerticalNum = moveVertical;
+
+		if (moveHorizontal == 0.0f && moveVertical == 0.0f) 
 		{
-			Horizontal = 1.0f;
-		}
-		else if(moveHorizontal<0)
-		{
-			Horizontal = -1.0f;
+			countTime = 0.0f;
+			isMoving = false;
+
+			return;
 		}
 
-		if(moveVertical>0)
+		if (0.0f == countTime) 
 		{
-			Vertical = 1.0f;
+			isMoving = true;
 		}
-		else if(moveVertical<0)
+
+
+		if (0.0f < countTime && isMoving)
 		{
-			Vertical = -1.0f;
+			Vector3 movement = new Vector3 (moveHorizontalNum,0.0f,moveVerticalNum);
+			transform.Translate (movement*stepSize*Time.deltaTime);
 		}
-		Debug.Log (transform.position.x+stepSize*Horizontal);
-		Vector3 movement = new Vector3 (this.transform.position.x+stepSize*Horizontal,this.transform.position.y+stepSize*Vertical,0.0f);
-		
-		transform.Translate (movement);
-		//Vector3 movement = new Vector3 (moveVertical,0.0f,moveHorizontal);
-		//transform.Translate (movement*Time.deltaTime);
+
+		countTime+=0.1f;
+
+		if (stepDuration == countTime) 
+		{
+			countTime=0.0f;
+		}
 	}
 }
