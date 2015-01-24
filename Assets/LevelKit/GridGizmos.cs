@@ -25,7 +25,7 @@ public class GridGizmos : MonoBehaviour
         float closestGridX = GetClosestGridX(transform.position.x);
         float closestGridZ = GetClosetGridZ(transform.position.z);
         transform.position = new Vector3(closestGridX,
-            closestGridZ, transform.position.z);
+		                                 transform.position.y, closestGridZ);
     }
 
     public void SnapTransformToHorizontalGrid(Transform transform)
@@ -37,9 +37,9 @@ public class GridGizmos : MonoBehaviour
 
     public void SnapTransformToVerticalGrid(Transform transform)
     {
-        float closestGridY = GetClosetGridZ(transform.position.y);
+        float closestGridZ = GetClosetGridZ(transform.position.z);
         transform.position = new Vector3(transform.position.x,
-            closestGridY, transform.position.z);
+		                                 transform.position.y, closestGridZ);
     }
 
     public float GetClosestGridX(float x)
