@@ -29,7 +29,7 @@ public class Ghost : MonoBehaviour
 		if(_shouting){
 			distanceFromLisnter = Vector3.Distance(transform.position,collider.gameObject.transform.position);
 			Debug.Log("distance :"+distanceFromLisnter);
-			audio.volume = 1-distanceFromLisnter*0.1f;
+			audio.volume = (10-distanceFromLisnter)*0.1f;
 		}
 	}
 	void startShouting(Collider collider){
