@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 	Vector3 lasttime;
 	// Use this for initialization
 	void Start () {
+
 	}
 
 	// Update is called once per frame
@@ -38,12 +39,11 @@ public class Player : MonoBehaviour {
 		{
 			Vertical = -1.0f;
 		}
-		//Debug.Log (gameObject.transform.position.y);
-		//Vector3 movement = new Vector3 (gameObject.transform.position.y+stepSize*Horizontal*Time.deltaTime,0.0f,gameObject.transform.position.x+stepSize*Vertical*Time.deltaTime);
-		//transform.Translate (movement);
-		//Vector3 movement = new Vector3 (moveHorizontal*stepSize*-1.0f,0.0f,moveVertical*stepSize*-1.0f);
-		Vector3 movement = new Vector3 (moveHorizontal,0.0f,moveVertical);
-		//Vector3 movement = new Vector3 (moveHorizontal*stepSize*-1.0f,0.0f,moveVertical*stepSize*-1.0f);
-		transform.Translate (movement*stepSize*Time.deltaTime);
+		Debug.Log (transform.position.x+stepSize*Horizontal);
+		Vector3 movement = new Vector3 (this.transform.position.x+stepSize*Horizontal,this.transform.position.y+stepSize*Vertical,0.0f);
+		
+		transform.Translate (movement);
+		//Vector3 movement = new Vector3 (moveVertical,0.0f,moveHorizontal);
+		//transform.Translate (movement*Time.deltaTime);
 	}
 }
