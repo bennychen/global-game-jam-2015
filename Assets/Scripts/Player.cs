@@ -1,28 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour 
+{
 	[SerializeField]
-	public  float stepSize = 100.0f;
+	public float speed = 10f;
 
-	[SerializeField]
-	public float stepDuration = 0.5f;
-
-	public float countTime = 0.0f;
-
-	[SerializeField]
-	public float speed = 10;
-
-	bool isMoving = false;
-	// Use this for initialization
-	void Start () {
-
-	}
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
 	void FixedUpdate()
 	{
 		float moveHorizontal = Input.GetAxis ("Horizontal");
@@ -31,37 +14,5 @@ public class Player : MonoBehaviour {
 		//rigidbody.MovePosition(rigidbody.position + moveHorizontal * Vector3.right * Time.fixedDeltaTime * 10 + 
 		                       //moveVertical * Vector3.forward * Time.fixedDeltaTime * 10);
 		rigidbody.velocity = moveHorizontal * Vector3.right * speed + moveVertical * Vector3.forward * speed;
-
-		/*
-		float moveHorizontalNum = moveHorizontal;
-		float moveVerticalNum = moveVertical;
-
-		if (moveHorizontal == 0.0f && moveVertical == 0.0f) 
-		{
-			countTime = 0.0f;
-			isMoving = false;
-
-			return;
-		}
-
-		if (0.0f == countTime) 
-		{
-			isMoving = true;
-		}
-
-
-		if (0.0f < countTime && isMoving)
-		{
-			Vector3 movement = new Vector3 (moveHorizontalNum,0.0f,moveVerticalNum);
-			transform.Translate (movement*stepSize*Time.deltaTime);
-		}
-
-		countTime+=0.1f;
-
-		if (stepDuration == countTime) 
-		{
-			countTime=0.0f;
-		}
-		*/
 	}
 }
