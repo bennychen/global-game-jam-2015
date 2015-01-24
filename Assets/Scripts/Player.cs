@@ -13,7 +13,8 @@ public class Player : MonoBehaviour {
 	bool isMoving = false;
 	// Use this for initialization
 	void Start () {
-
+		audio.Play();
+		audio.volume = 0.1f;
 	}
 
 	// Update is called once per frame
