@@ -12,6 +12,7 @@ public class WallBlock : MonoBehaviour
 			{
 				Debug.Log("player collider wall");
 				Player player = contactPoint.otherCollider.GetComponent<Player>();
+				player.rigidbody.AddForce(-contactPoint.normal * 2000);
 				break;
 			}
 		}
