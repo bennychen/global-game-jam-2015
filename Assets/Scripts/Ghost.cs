@@ -19,6 +19,7 @@ public class Ghost : MonoBehaviour
 			randomMoveTimeCounter -= deltaTime;
 		}
 	}
+
 	// Update is called once per frame
 	void Update (){
 		this.randomMove(Time.deltaTime);
