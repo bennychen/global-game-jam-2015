@@ -10,28 +10,13 @@ public class LevelComponentEditor : Editor {
         LevelComponent component = target as LevelComponent;
 
         EditorGUILayout.Separator();
-        EditorGUILayout.LabelField("ID",component.ID.ToString());
-
-        EditorGUILayout.Separator();
-        component.MinDepth = 
-            EditorGUILayout.FloatField("最小深度 MinDepth", component.MinDepth);
-
-        EditorGUILayout.Separator();
-        component.MaxDepth = 
-            EditorGUILayout.FloatField("最大深度 MaxDepth", component.MaxDepth);
-
-        EditorGUILayout.Separator();
-        float currentDepth =
-            EditorGUILayout.FloatField("当前深度 Depth", component.transform.position.z);
-        Vector3 position = component.transform.position;
-        if (currentDepth <= component.MaxDepth && currentDepth >= component.MinDepth)
-        {
-            position.z = currentDepth;
-            component.transform.position = position;
-        }
-
-        position.z = EditorGUILayout.Slider(position.z, component.MinDepth, component.MaxDepth);
-        component.transform.position = position;
+        component.ID = component.name;
+        EditorGUILayout.LabelField("ID", component.ID.ToString());
+		
+		EditorGUILayout.Separator();
+		component.DistanceToGround =
+			EditorGUILayout.FloatField("Distance to Ground", component.DistanceToGround);
+		component.transform.SetPositionY(component.DistanceToGround);
 
         EditorGUILayout.Separator();
         component.IsScalable =
@@ -53,29 +38,6 @@ public class LevelComponentEditor : Editor {
         component.IsHighEndOnly =
             EditorGUILayout.Toggle("只在高端机上创建", component.IsHighEndOnly);
         EditorGUILayout.LabelField("Is High-end Only");
-
-        EditorGUILayout.Separator();
-        EditorGUILayout.LabelField("Static Colliders", EditorStyles.boldLabel);
-        EditorGUILayout.LabelField("Count: " + component.StaticColliders.Count, EditorStyles.label);
-        _scrollPosition = EditorGUILayout.BeginScrollView(_scrollPosition);
-        for (int i = 0; i < component.StaticColliders.Count; i++)
-        {
-            Collider collider = component.StaticColliders[i];
-            if (collider != null)
-            {
-                EditorGUILayout.LabelField((i + 1) + ": " +
-                    (collider.gameObject == component.gameObject ? "self" : collider.name), EditorStyles.numberField);
-            }
-            else
-            {
-                EditorGUILayout.LabelField((i + 1) + ": null", EditorStyles.numberField);
-            }
-        }
-        EditorGUILayout.EndScrollView();
-
-        EditorGUILayout.Separator();
-        EditorGUILayout.LabelField("组件所属集合 Level Component Group", EditorStyles.boldLabel);
-        EditorGUILayout.ObjectField(component.ComponentGroup, typeof(LevelComponentGroup), false);
 
         EditorGUILayout.Separator();
         if (GUILayout.Button("Rebuild", GUILayout.Height(30)))

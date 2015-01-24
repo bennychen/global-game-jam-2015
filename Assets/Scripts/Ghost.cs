@@ -4,49 +4,7 @@ using System.Collections;
 public class Ghost : MonoBehaviour
 {
 	// Use this for initialization
-	void OnTriggerEnter(Collider collider){
-		//进入触发器执行的代码
-//		Debug.Log("collide enter !"+collider.gameObject.name);
-		if(collider.gameObject.Equals(_player)){
-			startShouting(collider);
-			audio.Play();
-		}
-	}
-	void OnTriggerExit(Collider collider){
-//		Debug.Log("collide exit !"+collider.gameObject.name);
-		if(collider.gameObject.Equals(_player)){
-			stopShouting(collider);
-			audio.Stop();
-		}
-	}
-	void OnTriggerStay(Collider collider){
-//		Debug.Log("collide stay !"+collider.gameObject.name);
-		if(collider.gameObject.Equals(_player)){
-			updateListnerDistance(collider);
-		}
-	}
-	void updateListnerDistance(Collider collider){
-		if(_shouting){
-			distanceFromLisnter = Vector3.Distance(transform.position,collider.gameObject.transform.position);
-			Debug.Log("distance :"+distanceFromLisnter);
-			audio.volume = (10-distanceFromLisnter)*0.1f;
-		}
-	}
-	void startShouting(Collider collider){
 
-		updateListnerDistance(collider);
-		_shouting = true;
-
-	}
-
-	void stopShouting(Collider collider){
-
-		updateListnerDistance(collider);
-		_shouting = false;
-	}
-	void Start (){
-		_player = GameObject.Find("Player");
-	}
 	void randomMove (float deltaTime){
 		if(!randomMoveEnbaled)return;
 		if (randomMoveTimeCounter <= 0) {
@@ -68,22 +26,7 @@ public class Ghost : MonoBehaviour
 	void Update (){
 		this.randomMove(Time.deltaTime);
 	}
-	[SerializeField]
-	public float
-		level0_soundTriggerRadius = 100;//level 0 trigger sound
-	
-	[SerializeField]
-	public float
-		level1_soundTriggerRadius = 50;// level 1 warning sound 
-	
-	[SerializeField]
-	public float
-		level2_soundTriggerRadius = 30;// level 2 serverly warning zone
-	
-	[SerializeField]
-	public float
-		level3_soundTriggerRadius = 15;// level 3 dead man!
-	
+
 	[SerializeField]
 	public float
 		randomMovePeriod = 1;
@@ -99,9 +42,4 @@ public class Ghost : MonoBehaviour
 	[SerializeField]
 	private bool randomMoveEnbaled = true;
 
-	private bool _shouting = false;
-	private float distanceFromLisnter = 0;
-	private GameObject _player ;
-
-	public bool isShouting {get{return _shouting;}}
 }

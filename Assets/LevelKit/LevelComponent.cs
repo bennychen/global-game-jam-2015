@@ -8,10 +8,8 @@ public class LevelComponent : MonoBehaviour
 
     [SerializeField]
     public string ID;
-    [SerializeField]
-    public float MinDepth = -3;
-    [SerializeField]
-    public float MaxDepth = 0.5f;
+	[SerializeField]
+	public float DistanceToGround = 0f;
     [SerializeField]
     public bool IsScalable = false;
 
@@ -45,18 +43,13 @@ public class LevelComponent : MonoBehaviour
             GridGizmos.Instance.SnapTransformToVerticalGrid(transform);
         }
 
-        transform.SetPositionZ(ClampPositionZ(transform.position.z));
+        transform.SetPositionY(DistanceToGround);
 
         if (!IsScalable)
         {
             transform.localScale = Vector3.one;
         }
         transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, 1);
-    }
-
-    public float ClampPositionZ(float z)
-    {
-        return Mathf.Clamp(z, MinDepth, MaxDepth);
     }
 
     public void Rebuild()
@@ -75,15 +68,6 @@ public class LevelComponent : MonoBehaviour
         Collider[] colliders = GetComponentsInChildren<Collider>() as Collider[];
         foreach (var collider in colliders)
         {
-            if (collider is BoxCollider)
-            {
-                BoxCollider boxCollider = collider as BoxCollider;
-                if (boxCollider.size.z * boxCollider.transform.localScale.z < 20)
-                {
-                    Debug.LogWarning("Collider [" + boxCollider.name + "]'s z size is less than 20, rectify it");
-                    boxCollider.size = new Vector3(boxCollider.size.x, boxCollider.size.y, 20);
-                }
-            }
             Rigidbody rigidbody = collider.GetComponent<Rigidbody>();
             if (rigidbody == null)
             {
