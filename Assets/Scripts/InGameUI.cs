@@ -6,14 +6,14 @@ public class InGameUI : MonoBehaviour {
 	private void OnEnable () {
 		_startButton.onClick.AddListener (() =>
 		                                  {
-			Debug.Log("GoToLevel001");
-			Application.LoadLevel("Level001");
+			SaveManager.LoadCurrentLevel();
 		}); 
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+
 	}
 
 	[SerializeField]

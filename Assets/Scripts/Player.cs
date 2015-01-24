@@ -6,7 +6,19 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	public float speed = 10f;
 
-	void FixedUpdate()
+	public bool IsPursuingGhost { get; private set; }
+
+	public void StartPursueGhost()
+	{
+		IsPursuingGhost = true;
+	}
+
+	public void Reset()
+	{
+		IsPursuingGhost = false;
+	}
+
+	private void FixedUpdate()
 	{
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");

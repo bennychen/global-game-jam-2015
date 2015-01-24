@@ -1,31 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SaveManager : MonoBehaviour {
-	public int currentLevel;
+public static class SaveManager
+{
+	public const int LevelCount = 1;
 
-	// Use this for initialization
-	void Start () {
-	
+	public static int CurrentLevelIndex
+	{
+		get
+		{
+			return PlayerPrefs.GetInt("current_level", 1);
+		}
+		set
+		{
+			PlayerPrefs.SetInt("current_level", value);
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-	void deleteOldGame(){
 
+	public static void Reset()
+	{
+		PlayerPrefs.DeleteAll();
 	}
-	void startNewGame(){
-		deleteOldGame();
-	}
-	void loadOldGame(){
 
+	public static void LoadCurrentLevel()
+	{
+		LoadLevel(CurrentLevelIndex);
 	}
-	void continueGame(){
-		loadOldGame();
-	}
-	void saveGame(){
 
+	public static void AdvanceLevel()
+	{
+		CurrentLevelIndex = Mathf.Clamp(CurrentLevelIndex, 1, LevelCount);
+	}
+
+	public static void LoadLevel(int index)
+	{
+		if (index >= 1 && index <= LevelCount)
+		{
+			Application.LoadLevel("Level00" + index);
+		}
 	}
 }

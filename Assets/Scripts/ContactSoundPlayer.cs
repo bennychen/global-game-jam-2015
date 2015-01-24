@@ -28,7 +28,7 @@ public class ContactSoundPlayer : MonoBehaviour {
 	void updateListnerDistance(Collider collider){
 		if(_shouting){
 			distanceFromLisnter = Vector3.Distance(transform.position,collider.gameObject.transform.position);
-			Debug.Log("distance :"+distanceFromLisnter);
+			//Debug.Log("distance :"+distanceFromLisnter);
 			if(distanceFromLisnter <= distanceThreshold){
 				// level1 warning;
 				audio.volume = (distanceThreshold-distanceFromLisnter)*0.1f;
