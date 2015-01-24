@@ -10,10 +10,12 @@ public class Ghost : MonoBehaviour
 		if (randomMoveTimeCounter <= 0) {
 			randomMoveTimeCounter = randomMovePeriod;
 			//randomMove aciton
-			float y = Random.Range(randomMoveMin, randomMoveMax);
-			float x = Random.Range(randomMoveMin, randomMoveMax);
-			Vector3 movement = new Vector3 ( x,0,y);
-			transform.Translate(movement);
+			float dx = Random.Range(randomMoveMin, randomMoveMax);
+			float dy = Random.Range(randomMoveMin, randomMoveMax);
+			int x = Random.Range(0,100);
+
+			rigidbody.velocity = dx * Vector3.right * speed + dy*Vector3.forward* speed;
+			Debug.Log("velocity:"+rigidbody.velocity.x+","+rigidbody.velocity.y+","+rigidbody.velocity.z);
 
 		
 		} else {
@@ -41,5 +43,6 @@ public class Ghost : MonoBehaviour
 
 	[SerializeField]
 	private bool randomMoveEnbaled = true;
-
+	[SerializeField]
+	private float speed = 1;
 }
