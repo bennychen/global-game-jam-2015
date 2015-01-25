@@ -9,6 +9,7 @@ public class Target : MonoBehaviour
 		{
 			Player player = collider.gameObject.GetComponent<Player>();
 			player.StartPursueGhost();
+			player.ItemAudio.Play();
 			gameObject.SetActive(false);
 		}
 	}
