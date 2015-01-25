@@ -10,10 +10,10 @@ public class WallBlock : MonoBehaviour
 			ContactPoint contactPoint = collision.contacts[i];
 			if (contactPoint.otherCollider.CompareTag("Player"))
 			{
-				Debug.Log("player collider wall - " + (-contactPoint.normal));
+				//Debug.Log("player collider wall - " + (-contactPoint.normal));
 				Player player = contactPoint.otherCollider.GetComponent<Player>();
 				player.FreezePlayer(0.5f);
-				player.rigidbody.AddForce(-contactPoint.normal * 100);
+				player.rigidbody.AddForce(-contactPoint.normal * 50);
 				break;
 			}
 		}
