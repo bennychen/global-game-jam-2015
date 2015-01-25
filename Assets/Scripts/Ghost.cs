@@ -15,7 +15,7 @@ public class Ghost : MonoBehaviour
 			int x = Random.Range(0,100);
 
 			rigidbody.velocity = dx * Vector3.right * speed + dy*Vector3.forward* speed;
-			Debug.Log("velocity:"+rigidbody.velocity.x+","+rigidbody.velocity.y+","+rigidbody.velocity.z);
+			//Debug.Log("velocity:"+rigidbody.velocity.x+","+rigidbody.velocity.y+","+rigidbody.velocity.z);
 
 		
 		} else {
