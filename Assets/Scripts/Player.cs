@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	public AudioSource ItemAudio;
 
+	[SerializeField]
+	public Compass compass;
+
 	public AudioSource BgmAudio;
 	public AudioClip normalBgm;
 	public AudioClip heartbeatBgm;

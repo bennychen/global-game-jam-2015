@@ -27,11 +27,12 @@ public class RandomPlayEffect : MonoBehaviour {
 		if(duration>=checkPlaySoundDuration)
 		{
 			duration=0;
-			int seed = Random.Range(1,playSoundPossiableRate);
-			int resault = Random.Range(1,playSoundPossiableRate);
-			if(seed==resault)
+			int seed = Random.Range(1,100);
+
+			if(seed<playSoundPossiableRate)
 			{
 				audio.Play();
+				Debug.Log("play sound !");
 			}
 		}
 	}

@@ -3,7 +3,7 @@ using System.Collections;
 
 public static class SaveManager
 {
-	public const int LevelCount = 1;
+	public const int LevelCount = 3;
 
 	public static int CurrentLevelIndex
 	{
@@ -29,14 +29,15 @@ public static class SaveManager
 
 	public static void AdvanceLevel()
 	{
-		CurrentLevelIndex = Mathf.Clamp(CurrentLevelIndex, 1, LevelCount);
+		CurrentLevelIndex = Mathf.Clamp(CurrentLevelIndex, CurrentLevelIndex + 1, LevelCount);
+		Debug.Log("CurrentLevelIndex:"+CurrentLevelIndex);
 	}
 
 	public static void LoadLevel(int index)
 	{
 		if (index >= 1 && index <= LevelCount)
 		{
-			Application.LoadLevel("Level00" + index);
+			Application.LoadLevel("LevelMatthew00" + index);
 		}
 	}
 }

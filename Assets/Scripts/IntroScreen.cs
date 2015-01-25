@@ -3,6 +3,8 @@ using System.Collections;
 
 public class IntroScreen : MonoBehaviour 
 {
+	public tk2dSprite image;
+
 	private void Start () 
 	{
 		StartCoroutine(FlashScreen(startTime));
@@ -12,10 +14,10 @@ public class IntroScreen : MonoBehaviour
 	private IEnumerator FlashScreen(float delay)
 	{
 		yield return new WaitForSeconds(delay);
-		Go.to(mainCamera, duration, new GoTweenConfig().colorProp("backgroundColor", Color.white).
+		Go.to(image, duration, new GoTweenConfig().colorProp("color", Color.white).
 		      setEaseType(GoEaseType.BounceInOut).setIterations(1, GoLoopType.PingPong));
 		yield return new WaitForSeconds(duration);
-		Go.to(mainCamera, duration, new GoTweenConfig().colorProp("backgroundColor", Color.black).
+		Go.to(image, duration, new GoTweenConfig().colorProp("color", Color.black).
 		      setEaseType(GoEaseType.BounceInOut).setIterations(1, GoLoopType.PingPong));
 	}
 
@@ -23,6 +25,14 @@ public class IntroScreen : MonoBehaviour
 	{
 		yield return new WaitForSeconds(totalSoundTime);
 		Application.LoadLevel("MainMenu");
+	}
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.S))
+		{
+			Application.LoadLevel("MainMenu");
+		}
 	}
 
 	public Camera mainCamera;
