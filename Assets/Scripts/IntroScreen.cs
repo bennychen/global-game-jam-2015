@@ -3,6 +3,7 @@ using System.Collections;
 
 public class IntroScreen : MonoBehaviour 
 {
+	[SerializeField]
 	public tk2dSprite image;
 
 	private void Start () 

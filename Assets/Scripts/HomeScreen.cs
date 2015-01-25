@@ -13,9 +13,14 @@ public class HomeScreen : MonoBehaviour
 	public AudioClip closeDoor;
 	public AudioClip intro;
 	public AudioSource audioSource;
+	private bool buttonPressed = false;
 
 	public IEnumerator ClickStartButton()
 	{
+		if(buttonPressed){
+			yield break;
+		}
+		buttonPressed = true;
 		audioSource.clip = openDoor;
 		audioSource.Play();
 		yield return new WaitForSeconds(animDelay);
