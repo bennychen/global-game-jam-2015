@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class InGameUI : MonoBehaviour {
+
+public class HomeScreen : MonoBehaviour 
+{
 	
 	private void OnEnable () {
 		_startButton.onClick.AddListener (() =>
