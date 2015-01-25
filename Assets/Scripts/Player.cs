@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	public Compass compass;
 
+	public float distanceFromMug;
+
 	public AudioSource BgmAudio;
 	public AudioClip normalBgm;
 	public AudioClip heartbeatBgm;
@@ -47,7 +49,14 @@ public class Player : MonoBehaviour
 		yield return new WaitForSeconds(seconds);
 		IsFreezed = false;
 	}
+	void Update(){
+		GameObject target = GameObject.Find("Target");
+		if(target){
+			distanceFromMug =  Vector3.Distance(target.transform.position,transform.position);
+		}
 
+
+	}
 	private void FixedUpdate()
 	{
 		if (IsFreezed) return;

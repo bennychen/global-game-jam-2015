@@ -13,6 +13,7 @@ public class LevelEndScreen : MonoBehaviour
 	public void Restart()
 	{
 		SaveManager.LoadCurrentLevel();
+		Debug.Log("press restart");
 	}
 
 	public void Next()
@@ -40,6 +41,9 @@ public class LevelEndScreen : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.N))
 		{
 			Next ();
+		}
+		if(Input.GetKeyDown(KeyCode.P)){
+			SaveManager.Reset();
 		}
 	}
 

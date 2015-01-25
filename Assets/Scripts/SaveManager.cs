@@ -20,6 +20,7 @@ public static class SaveManager
 	public static void Reset()
 	{
 		PlayerPrefs.DeleteAll();
+		Debug.Log("PlayerPrefs.DeleteAll()");
 	}
 
 	public static void LoadCurrentLevel()
@@ -38,6 +39,7 @@ public static class SaveManager
 		if (index >= 1 && index <= LevelCount)
 		{
 			Application.LoadLevel("LevelMatthew00" + index);
+			Debug.Log("LoadLevel :"+index);
 		}
 	}
 }
