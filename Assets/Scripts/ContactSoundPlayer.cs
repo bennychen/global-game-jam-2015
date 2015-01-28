@@ -31,7 +31,7 @@ public class ContactSoundPlayer : MonoBehaviour {
 			//Debug.Log("distance :"+distanceFromLisnter);
 			if(distanceFromLisnter <= distanceThreshold){
 				// level1 warning;
-				audio.volume = (distanceThreshold-distanceFromLisnter)*0.1f;
+				audio.volume = (distanceThreshold-distanceFromLisnter)/distanceThreshold;
 				float room = (distanceThreshold-distanceFromLisnter) * 1000f*(-1f);
 				if(-room>1000*(distanceThreshold-reverbThreshold)){room = -10000;}
 				_reverbFilter.room = room;
